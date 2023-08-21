@@ -2,9 +2,8 @@
 
 
 DATE= $(date +%F-%H-%M-%S)
-SCRIPT-NAME= $0
-LOGFILE= /tmp/$SCRIPT-NAME.$DATE.log
-USERID=$(id -u)
+SCRIPT_NAME=$0
+LOGFILE= /tmp/$SCRIPT_NAME.$DATE.log
 
 VALIDATE(){
     if [ $1 -ne 0 ]
@@ -15,6 +14,10 @@ VALIDATE(){
         echo "$2...Success"
 fi
 }
+
+USERID=$(id -u)
+
+
 if [ $USERID -ne 0 ]
 then
     echo "Error:: pls run the script with root access"
@@ -23,10 +26,10 @@ then
   # echo "info::you are root user"
 fi
 
-yum install mysql -y
+yum install mysql -y &>>$LOGFILE
 
 VALIDATE $? "Installing MYSQL"
 
-yum install postfix -y
+yum install postfix -y &>>$LOGFILE
 
 VALIDATE $? "Installing postfix"
