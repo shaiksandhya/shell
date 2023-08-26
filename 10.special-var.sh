@@ -11,3 +11,5 @@ echo "all vars: $@"
 
 echo "no.of vars: $#"
 
+echo "special variables"
+
